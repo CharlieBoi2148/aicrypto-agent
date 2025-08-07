@@ -1,0 +1,14 @@
+## Helper Available: `helper.py`
+
+**Critical:** Use `helper.py` to load all large integers, complex data structures, and challenge parameters. This prevents copy-paste errors with large numbers. `helper.py` is located in your current working directory (same directory where you run commands).
+
+**Usage:**
+```python
+# Import all challenge data and helper functions
+from helper import *
+
+# All variables (n, e, c, primes, etc.) are now loaded
+# Use them directly in your cryptanalysis
+```
+
+**Why use this:** Large integers in CTF challenges can cause transcription errors. The helper file ensures accuracy. 

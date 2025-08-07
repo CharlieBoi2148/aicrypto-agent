@@ -1,0 +1,15 @@
+**CRYPTOGRAPHY CTF CHALLENGE**
+
+{}
+
+**File Access**:
+- Read only: `./public/`
+- Write to: `./`
+
+{}
+
+**Critical:** 
+1. Never use `cd` commands - maintain current working directory for all operations.
+2. The flag format is {}. Save the obtained flag to `./flag.txt` before verification.
+3. Prefer elegant algebraic or structural attacks to brute force.
+4. Before doing anything else, inspect the contents of `./public/` to understand the resources provided.

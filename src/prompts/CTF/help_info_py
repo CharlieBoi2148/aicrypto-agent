@@ -1,0 +1,19 @@
+## Mandatory: Using helper.py for Large Number Operations
+
+When your script involves calculations with large numbers, you **must** use the `helper.py` script. This is critical for ensuring precision and correctness in your computations. Do not define or hardcode large numbers directly in your script; always retrieve them using the provided helper functions.
+
+### Example: Retrieving a Large Number `n`
+
+To use a specific large number, such as `n`, in your script, follow this example:
+
+```python
+from public import helper
+
+# Correct way to get the large number n
+n = helper.get_n()
+
+# Your calculations using n would follow
+# e.g., result = n * some_other_value
+```
+
+**Note:** Failure to use `helper.py` for large number acquisition will result in incorrect or imprecise results.

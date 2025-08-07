@@ -1,0 +1,14 @@
+## Helper Available: `helper.sage`
+
+**Critical:** Use `helper.sage` to load all mathematical objects, large integers, polynomials, and challenge parameters. This prevents errors with complex SageMath structures. `helper.sage` is located in your current working directory (same directory where you run commands).
+
+**Usage:**
+```sage
+# Load all challenge data and mathematical objects
+load('helper.sage')
+
+# All variables (polynomials, finite fields, large primes, etc.) are now loaded
+# Mathematical objects are properly constructed in SageMath environment
+```
+
+**Why use this:** SageMath objects (polynomials, finite fields, elliptic curves) require precise construction. The helper file ensures mathematical accuracy. 
