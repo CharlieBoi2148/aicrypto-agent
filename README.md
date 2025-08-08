@@ -1,4 +1,9 @@
 # AICrypto
+
+[![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/2507.09580)
+[![Website](https://img.shields.io/badge/Website-AICryptoBench-blue)](https://aicryptobench.github.io/)
+[![Dataset](https://img.shields.io/badge/Dataset-HuggingFace-yellow)](https://huggingface.co/datasets/yuuwwang/aicrypto/tree/main)
+
 Code for the paper "AICrypto: A Comprehensive Benchmark for Evaluating Cryptography Capabilities of Large Language Models"
 
 ## Setup
