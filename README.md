@@ -119,3 +119,16 @@ AICrypto/
 ├── outputs/        # Output directory for results
 └── environment.yml # Conda environment specification
 ```
+
+## Citation
+
+If you find this repository useful, please cite:
+
+```bibtex
+@article{wang2025aicrypto,
+  title={AICrypto: A Comprehensive Benchmark for Evaluating Cryptography Capabilities of Large Language Models},
+  author={Wang, Yu and Liu, Yijian and Ji, Liheng and Luo, Han and Li, Wenjie and Zhou, Xiaofei and Feng, Chiyun and Wang, Puji and Cao, Yuhan and Zhang, Geyuan and Li, Xiaojian and Xu, Rongwu and Chen, Yilei and He, Tianxing},
+  journal={arXiv preprint arXiv:2507.09580},
+  year={2025}
+}
+```
