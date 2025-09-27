@@ -39,13 +39,12 @@ Code for the paper "AICrypto: A Comprehensive Benchmark for Evaluating Cryptogra
 Download the dataset from https://huggingface.co/datasets/yuuwwang/aicrypto/tree/main and place it in the `./data` directory.
 
 ## Usage
-
 ### Run Single CTF Challenge
 
 To run a single CTF challenge:
 
 ```shell
-python run_single_task.py --task-path data/CTF/04-RSA/01-blue-hens-2023 --model gpt-4.1
+python run_single_ctf_task.py --task-path data/CTF/04-RSA/01-blue-hens-2023 --model gpt-4.1
 ```
 
 Results will be automatically saved in `./outputs/CTF-0/04-RSA/01-blue-hens-2023/gpt-4.1/run`
@@ -61,6 +60,44 @@ python run_ctf_parallel.py --jobs 4 --id 0
 This command uses 4 processes to run tasks with run ID 0. Results will be automatically saved in `./outputs/CTF-0`.
 
 The script will run all models specified in `config/model.yaml`. You can customize the models by modifying `config/model.yaml` and the corresponding model implementations in the `src/model` directory.
+
+### Run Single MCQ Evaluation
+
+Run MCQs with a single model:
+```shell
+python run_choice_question.py --model gpt-4.1
+```
+
+Results are saved to `./outputs/MultipleChoice/<model_name>/`.
+
+### Run MCQ Evaluation in Parallel
+
+Run MCQs across multiple models in parallel:
+```shell
+python batch_run_choice_question.py --parallel --jobs 4
+```
+Optionally select specific models:
+```shell
+python batch_run_choice_question.py --parallel --jobs 4 --models gpt-4.1 o3
+```
+
+### Run Single Proof Task
+
+Run proof generation for a specific exam and model:
+```shell
+python run_proof_task.py --exam 1 --model gpt-4.1
+```
+Outputs:
+- Proofs: `./outputs/proof/exam1/proof/gpt-4.1_proof_results.tex`
+- Reasoning: `./outputs/proof/exam1/reasoning/gpt-4.1_reasoning_results.tex`
+- Logs: `./outputs/proof/exam1/log/`
+
+### Run Proof Tasks in Parallel for Evaluation
+
+Run multiple exams and models concurrently:
+```shell
+python batch_run_proof_tasks.py --exam-values 1 2 3 --jobs 4
+```
 
 ## Configuration
 

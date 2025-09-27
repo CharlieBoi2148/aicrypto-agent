@@ -3,7 +3,7 @@ from __future__ import annotations
 """Parallel batch runner for CTF tasks.
 
 This script is a drop-in replacement for *run_ctf.py* that executes up to
-*max_workers* instances of `python run_single_task.py --model … --task-path …`
+*max_workers* instances of `python run_single_ctf_task.py --model … --task-path …`
 concurrently.  A task is only launched if a record for the given
 ``(model, task_path)`` pair is **not** already present in
 ``outputs/CTF/results/ctf_<model>_task_results.json`` – this makes the script
@@ -127,7 +127,7 @@ def _save_results(path: Path, results: Dict[str, JsonResult]) -> None:
 # ----------------------------------------------------------------------------
 
 def _run_task_subprocess(model: str, task_dir: str) -> JsonResult:
-    """Execute *run_single_task.py* for *task_dir*/*model* and return its result.
+    """Execute *run_single_ctf_task.py* for *task_dir*/*model* and return its result.
 
     The child script prints a single-line JSON summary to *stdout* – we parse
     that to obtain the boolean *result* field.  Any exception or non-zero exit
@@ -137,14 +137,14 @@ def _run_task_subprocess(model: str, task_dir: str) -> JsonResult:
 
     cmd = [
         sys.executable,
-        "run_single_task.py",
+        "run_single_ctf_task.py",
         "--model",
         model,
         "--task-path",
         task_dir,
     ]
 
-    # Pass the experiment identifier downstream so that *run_single_task.py*
+    # Pass the experiment identifier downstream so that *run_single_ctf_task.py*
     # and the underlying *TaskRunner* can place their artefacts in the correct
     # directory hierarchy.
     if OUTPUT_ID:

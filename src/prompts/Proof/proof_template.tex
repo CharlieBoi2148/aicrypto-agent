@@ -1,0 +1,70 @@
+\documentclass[11pt]{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{epsfig}
+%\usepackage{psfig}
+\usepackage{complexity}
+\usepackage{hyperref}
+\usepackage{subfig}
+\usepackage{enumitem}
+\usepackage{cleveref}
+\usepackage{xcolor}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\newcommand{\eps}{\varepsilon}
+
+% 1-inch margins, from fullpage.sty by H.Partl, Version 2, Dec. 15, 1988.
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 9.3in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+
+
+%\renewcommand{\baselinestretch}{1.25}
+
+\newcommand{\code}{\ttfamily}
+
+
+\newif\ifcomments
+\commentstrue
+
+\ifcomments
+\newcommand\tqnote[1]{{\color{blue} Tianqi: #1}}
+\newcommand\jnote[1]{{\color{orange} Jiatu: #1}}
+\newcommand\ynote[1]{{\color{red} Yilei: #1}}
+\else
+\newcommand\tqnote[1]{}
+\newcommand\jnote[1]{}
+\newcommand\ynote[1]{}
+\fi
+
+
+\newcommand{\ord}{\mathsf{ord}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Enc}{\mathsf{Enc}}
+\newcommand{\Dec}{\mathsf{Dec}}
+\newcommand{\Gen}{\mathsf{Gen}}
+\newcommand{\Adv}{\mathsf{Adv}}
+
+\begin{document}
+
