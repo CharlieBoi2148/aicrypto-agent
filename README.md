@@ -122,7 +122,7 @@ AICrypto/
 
 ## Citation
 
-If you find this repository useful, please cite:
+If you find this repository useful, please consider citing:
 
 ```bibtex
 @article{wang2025aicrypto,
