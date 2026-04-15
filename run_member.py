@@ -138,7 +138,7 @@ def main():
         signal.signal(signal.SIGINT, _graceful_shutdown)
         signal.signal(signal.SIGTERM, _graceful_shutdown)
 
-        runner = TaskRunner(args)
+        runner = TaskRunner(runner_args)
         _ACTIVE_RUNNER = runner
 
         task_result = runner.run()  # ``True`` when flag verified successfully.
