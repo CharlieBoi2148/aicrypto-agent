@@ -1,5 +1,5 @@
 gpt-4.1:
-  client: "azure"
+  client: "openai"
   model_name: "gpt-4.1"
   deployment: "gpt-4.1"
 
