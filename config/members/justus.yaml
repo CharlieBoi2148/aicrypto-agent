@@ -4,4 +4,4 @@ model: Gotta double check which one I went with
 
 prompts:
   original: src/prompts/CTF/system_prompt
-  poisoned: config/custom_prompts/justus_poisoned.txt
+  poisoned: config/custom_prompts/justus_poisoned
