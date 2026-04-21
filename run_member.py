@@ -6,7 +6,7 @@ Each team member has a config in config/members/<name>.yaml defining
 their model and prompt files. The CTF challenge and prompt mode are
 specified on the command line.
 
-Usage:
+Usage Examples:
     python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode instructional
     python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode poisoned
     python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode original
