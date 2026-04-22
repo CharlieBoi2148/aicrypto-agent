@@ -1,1 +1,0 @@
-flag = b"SEKAI{FAKEFLAG}"

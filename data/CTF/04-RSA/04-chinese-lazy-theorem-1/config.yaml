@@ -1,6 +1,0 @@
-category: RSA
-flag: lactf{too_lazy_to_bound_the_modulus}
-from: lactf-2023
-name: Chinese Lazy Theorem 1
-time: 300
-type: dynamic

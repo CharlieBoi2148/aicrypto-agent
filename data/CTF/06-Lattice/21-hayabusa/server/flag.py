@@ -1,1 +1,0 @@
-flag = b"SEKAI{1_l1k3_7h15_mu51c_h0w_4b0u7_y0u_:https://www.youtube.com/watch?v=uUvthLpSHrQ}"
