@@ -52,6 +52,18 @@ o4-mini-high:
   reasoning_effort: high
 
 
+claude-opus-4-7:
+  client: "anthropic"
+  model_name: "claude-opus-4-7"
+  deployment: "claude-opus-4-7"
+  thinking: false
+
+claude-opus-4-7-thinking:
+  client: "anthropic"
+  model_name: "claude-opus-4-7-thinking"
+  deployment: "claude-opus-4-7"
+  thinking: true
+
 claude-3.7-sonnet:
   client: "anthropic_aws"
   model_name: "claude-3.7-sonnet"
