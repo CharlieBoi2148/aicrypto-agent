@@ -26,6 +26,7 @@ MODEL_MAP = {
     "claude-4.0-sonnet": ClaudeModel,
     "claude-4.0-sonnet-thinking": ClaudeModel,
     'gemini-2.5-pro-preview': GeminiReasoningModel,
+    'gemini-3.1-pro-preview': GeminiReasoningModel,
     'deepseek-v3': DeepSeekModel,
     'deepseek-r1': DeepSeekModel,
     'doubao-seed-1.6': Doubao,

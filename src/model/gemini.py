@@ -2,9 +2,7 @@ from google import genai
 from google.genai import types
 import os
 from typing import Dict, Any
-
 from src.model.base_model import BaseModel
-
 
 class GeminiReasoningModel(BaseModel):
     def __init__(self, model_config: Dict[str, Any], system_prompt: str):
@@ -12,14 +10,12 @@ class GeminiReasoningModel(BaseModel):
         self.init_client()
         self.system_prompt = system_prompt
         self.init_prompt()
-        
+
     def init_client(self):
         if self.client_type == 'google':
             self.client = genai.Client(
-                vertexai=True,
-                project="nova-gemini-250604",
-                location="global"
-                )
+                api_key=os.environ.get("GOOGLE_API_KEY")
+            )
         else:
             raise ValueError(f"Invalid client type: {self.client_type}")    
     
