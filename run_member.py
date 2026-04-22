@@ -62,6 +62,7 @@ def parse_args():
         choices=["original", "instructional", "poisoned"],
         help="Which prompt variant to use"
     )
+    # Note: model is specified per-member in config/members/<member>.yaml,
     return parser.parse_args()
 
 #Constructs path and checks if it exists
@@ -69,7 +70,7 @@ def load_member_config(member: str) -> dict:
     config_path = Path(f"config/members/{member}.yaml")
     if not config_path.exists():
         print(f"Error: No config found at {config_path}")
-        print(f"Create one by copying config/members/template.yaml")
+        print(f"Create one by copying config/members/charlie.yaml")
         sys.exit(1)
     with open(config_path) as f:
         return yaml.safe_load(f)
