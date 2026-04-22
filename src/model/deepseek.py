@@ -18,6 +18,9 @@ class DeepSeekModel(BaseModel):
         if self.client_type == 'tencent':
             self.client = openai.OpenAI(api_key=os.getenv("DEEPSEEK_API_KEY"),
                                         base_url="https://api.lkeap.cloud.tencent.com/v1")
+        elif self.client_type == 'deepseek':
+            self.client = openai.OpenAI(api_key=os.getenv("DEEPSEEK_API_KEY"),
+                                        base_url="https://api.deepseek.com")
         else:
             raise ValueError(f"Invalid client type: {self.client_type}")    
     
@@ -33,7 +36,7 @@ class DeepSeekModel(BaseModel):
         completion = self.client.chat.completions.create(
                     model=self.deployment,
                     messages=self.messages,
-                    max_tokens=12400,
+                    max_tokens=8192,
                 )
         thinking = completion.choices[0].message.reasoning_content if self.is_reasoning else ""
         answer = completion.choices[0].message.content
