@@ -1,69 +1,127 @@
-# AICrypto
+# AICrypto — Group 5 Fork
 
 [![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/2507.09580)
-[![Website](https://img.shields.io/badge/Website-AICryptoBench-blue)](https://aicryptobench.github.io/)
-[![Dataset](https://img.shields.io/badge/Dataset-HuggingFace-yellow)](https://huggingface.co/datasets/yuuwwang/aicrypto/tree/main)
+[![Original Repo](https://img.shields.io/badge/Original-Repo-gray)](https://github.com/wangyu-ovo/aicrypto-agent)
+[![Dataset](https://img.shields.io/badge/Dataset-HuggingFace-yellow)](https://huggingface.co/datasets/yuuwwang/aicrypto)
 
-Code for the paper "AICrypto: A Comprehensive Benchmark for Evaluating Cryptography Capabilities of Large Language Models"
+Fork of the [AICrypto benchmark](https://github.com/wangyu-ovo/aicrypto-agent) for a Systems Security course group project. We reproduced the paper's results and extended the benchmark with a per-member prompt injection system.
+
+---
 
 ## Setup
+
+> All steps must be run on Linux (Ubuntu 20.04 recommended).
+>
+> **Important:** These setup steps are for Linux (Ubuntu 20.04) running on an x86_64 machine. The conda environment will not work on macOS (including Apple Silicon or Intel Macs) due to Linux-only dependencies. Use the VirtualBox VM provided in class.
 
 ### Prerequisites
 
 - Python 3.10.15
 - SageMath 10.5
 - yafu 1.34.5
+- VirtualBox VM configured as per the class setup (≥ 5000 MB base memory recommended for some operations)
 
 ### Installation
 
-1. **Create conda environment:**
-   ```shell
-   conda env create -f environment.yml
+1. **Install Git and clone:**
+   ```bash
+   sudo apt update && sudo apt upgrade -y
+   sudo apt install git -y
+   cd ~/Documents
+   git clone https://github.com/CharlieBoi2148/aicrypto-agent.git
+   cd aicrypto-agent
+   git checkout development
+   ```
+
+2. **Install Miniconda:**
+   ```bash
+   wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+   bash Miniconda3-latest-Linux-x86_64.sh
+   source ~/.bashrc
+   ```
+   During installation: accept the license, confirm the default install location, and type `yes` to initialize Miniconda.
+
+3. **Create the conda environment:**
+
+   > The original `environment.yml` has a Cascadelake CPU constraint that fails on VirtualBox. Use the fix below — do **not** run `conda env create -f environment.yml` directly.
+
+   ```bash
+   grep -v "_x86_64-microarch-level" environment.yml > environment_fixed.yml
+   conda env create -f environment_fixed.yml --solver=classic
+   ```
+   This step takes 20–40 minutes. Once complete:
+   ```bash
    conda activate crypto
    ```
 
-2. **Install SageMath dependencies:**
-   ```shell
+4. **Install SageMath dependencies:**
+   ```bash
    sage -pip install -r sage-requirements.txt
    ```
 
-3. **Install additional tools:**
-   - Install flatter: https://github.com/keeganryan/flatter
-   - Install yafu: https://github.com/bbuhrow/yafu/tree/master
+5. **Install flatter:**
+   ```bash
+   sudo apt install libgmp-dev libmpfr-dev fplll-tools libfplll-dev libeigen3-dev libopenblas-dev cmake -y
+   cd ~/Documents
+   git clone https://github.com/keeganryan/flatter.git
+   cd flatter && mkdir build && cd build
+   cmake .. && make && sudo make install && sudo ldconfig
+   cd ~/Documents/aicrypto-agent
+   ```
 
-4. **Configure API keys:**
-   Create a `.env` file with your API keys for the models you want to use.
+6. **Install yafu:**
+   ```bash
+   sudo apt install libgmp-dev libecm-dev -y
+   cd ~/Documents
+   git clone https://github.com/bbuhrow/yafu.git
+   cd yafu
+   make -f Makefile.gcc yafu
+   sudo cp ~/Documents/yafu/yafu /usr/local/bin/
+   cd ~/Documents/aicrypto-agent
+   ```
 
-## Download Dataset
+7. **Fix proof data path:**
+   ```bash
+   ln -s proof_problems data/Proof
+   ```
 
-Download the dataset from https://huggingface.co/datasets/yuuwwang/aicrypto/tree/main and place it in the `./data` directory.
+8. **Configure API keys:**
+   ```bash
+   nano .env
+   ```
+   ```
+   OPENAI_API_KEY=sk-...
+   ANTHROPIC_API_KEY=sk-ant-...
+   ```
+   > Do not commit this file to GitHub.
+
+9. **Install additional dependencies:**
+   ```bash
+   pip install pyyaml
+   ```
+
+---
 
 ## Usage
-### Run Single CTF Challenge
 
-To run a single CTF challenge:
+### Run Single CTF Challenge
 
 ```shell
 python run_single_ctf_task.py --task-path data/CTF/04-RSA/01-blue-hens-2023 --model gpt-4.1
 ```
 
-Results will be automatically saved in `./outputs/CTF-0/04-RSA/01-blue-hens-2023/gpt-4.1/run`
+Results are saved to `./outputs/CTF-0/04-RSA/01-blue-hens-2023/gpt-4.1/run`.
 
 ### Run CTF Challenges in Parallel for Evaluation
-
-To run multiple tasks simultaneously for evaluating multiple models:
 
 ```shell
 python run_ctf_parallel.py --jobs 4 --id 0
 ```
 
-This command uses 4 processes to run tasks with run ID 0. Results will be automatically saved in `./outputs/CTF-0`.
-
-The script will run all models specified in `config/model.yaml`. You can customize the models by modifying `config/model.yaml` and the corresponding model implementations in the `src/model` directory.
+Uses 4 processes to run tasks with run ID 0. Results saved to `./outputs/CTF-0`. Models are specified in `config/model.yaml`.
 
 ### Run Single MCQ Evaluation
 
-Run MCQs with a single model:
 ```shell
 python run_choice_question.py --model gpt-4.1
 ```
@@ -72,32 +130,46 @@ Results are saved to `./outputs/MultipleChoice/<model_name>/`.
 
 ### Run MCQ Evaluation in Parallel
 
-Run MCQs across multiple models in parallel:
 ```shell
 python batch_run_choice_question.py --parallel --jobs 4
-```
-Optionally select specific models:
-```shell
+# Optionally select specific models:
 python batch_run_choice_question.py --parallel --jobs 4 --models gpt-4.1 o3
 ```
 
 ### Run Single Proof Task
 
-Run proof generation for a specific exam and model:
 ```shell
 python run_proof_task.py --exam 1 --model gpt-4.1
 ```
+
 Outputs:
 - Proofs: `./outputs/proof/exam1/proof/gpt-4.1_proof_results.tex`
 - Reasoning: `./outputs/proof/exam1/reasoning/gpt-4.1_reasoning_results.tex`
 - Logs: `./outputs/proof/exam1/log/`
 
-### Run Proof Tasks in Parallel for Evaluation
+### Run Proof Tasks in Parallel
 
-Run multiple exams and models concurrently:
 ```shell
 python batch_run_proof_tasks.py --exam-values 1 2 3 --jobs 4
 ```
+
+---
+
+## Our Extension — Prompt Injection
+
+We added `run_member.py`, a new entry point that lets each team member swap the CTF agent's system prompt with a custom technique. Each member has a config in `config/members/<name>.yaml` that declares their model and prompt files.
+
+```bash
+python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode original
+python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode instructional
+python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode poisoned
+```
+
+`--prompt-mode` accepts: `original | instructional | poisoned`. Model is pulled from `config/members/<member>.yaml`, not from the CLI, so each member's results use their declared model consistently.
+
+To add a new member, copy `config/members/charlie.yaml`, rename it to `<name>.yaml`, and update the fields.
+
+---
 
 ## Configuration
 
@@ -105,30 +177,28 @@ python batch_run_proof_tasks.py --exam-values 1 2 3 --jobs 4
 - **Custom Models**: Add custom model implementations in `src/model/`
 - **API Keys**: Set up your API keys in the `.env` file
 
-## Project Structure
 
-```
-AICrypto/
-├── config/          # Configuration files
-├── data/           # Dataset directory (download separately)
-├── src/            # Source code
-│   ├── agent/      # Agent implementations
-│   ├── model/      # Model implementations
-│   ├── prompts/    # Prompt templates
-│   └── utils/      # Utility functions
-├── outputs/        # Output directory for results
-└── environment.yml # Conda environment specification
-```
+## What Works / What Doesn't
 
-## Citation
+**Works:**
+- MCQ benchmark (all 135 questions)
+- CTF challenges in the RSA category
+- Proof generation (exam 1, all 6 problems)
+- Per-member prompt injection via `run_member.py`
 
-If you find this repository useful, please consider citing:
+**Does not work:**
+- Proof grading — requires `gpt-5.1` and `gemini-3-pro-preview` as graders; these are not included in the repository. Only proof generation can be reproduced.
 
-```bibtex
-@article{wang2025aicrypto,
-  title={AICrypto: A Comprehensive Benchmark for Evaluating Cryptography Capabilities of Large Language Models},
-  author={Wang, Yu and Liu, Yijian and Ji, Liheng and Luo, Han and Li, Wenjie and Zhou, Xiaofei and Feng, Chiyun and Wang, Puji and Cao, Yuhan and Zhang, Geyuan and Li, Xiaojian and Xu, Rongwu and Chen, Yilei and He, Tianxing},
-  journal={arXiv preprint arXiv:2507.09580},
-  year={2025}
-}
-```
+---
+
+## Scholarly References
+
+**Prior/Foundational Work:**
+
+[FROM MIGUEL]
+
+**Contemporary Work:**
+
+[FROM MIGUEL]
+
+---
