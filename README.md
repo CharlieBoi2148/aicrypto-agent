@@ -1,4 +1,4 @@
-# AICrypto — Group 5 Fork
+# AICrypto — Group 11 Fork
 
 [![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/2507.09580)
 [![Original Repo](https://img.shields.io/badge/Original-Repo-gray)](https://github.com/wangyu-ovo/aicrypto-agent)
@@ -188,6 +188,7 @@ To add a new member, copy `config/members/charlie.yaml`, rename it to `<name>.ya
 
 **Does not work:**
 - Proof grading — requires `gpt-5.1` and `gemini-3-pro-preview` as graders; these are not included in the repository. Only proof generation can be reproduced.
+- Full LLM Compatibility with custom prompts — custom prompts are run through individual member files, where each member is associated with a particular model, so only 5 LLMs (1 per associated member) can be tested with custom prompts.
 
 ---
 
