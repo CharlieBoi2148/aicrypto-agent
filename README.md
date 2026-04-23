@@ -188,7 +188,7 @@ To add a new member, copy `config/members/charlie.yaml`, rename it to `<name>.ya
 
 **Does not work:**
 - Proof grading — requires `gpt-5.1` and `gemini-3-pro-preview` as graders; these are not included in the repository. Only proof generation can be reproduced.
-- Full LLM Compatibility with custom prompts — custom prompts are run through individual member files, where each member is associated with a particular model, so only 5 LLMs (1 per associated member) can be tested with custom prompts.
+- Full LLM Compatibility with custom prompts — For testing purposes, custom prompts are run through individual member files where each member is associated with a particular model. As a result, only 5 LLMs (1 per associated member) can be tested with custom prompts. However, model values inside each member file can be updated to work with any models in config > model.yaml or a new member can be created to handle a new model inside config > model.yaml with ease.
 
 ---
 
