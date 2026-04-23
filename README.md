@@ -200,6 +200,15 @@ To add a new member, copy `config/members/charlie.yaml`, rename it to `<name>.ya
 
 **Contemporary Work:**
 
-[FROM MIGUEL]
+*Recent advancements (late 2025–2026) showcasing the shift toward autonomous agents, reinforcement learning, and real-world vulnerability discovery.*
+
+* **Muzsai, L., Imolai, D., & Lukács, A. (2025).** *Improving LLM Agents with Reinforcement Learning on Cryptographic CTF Challenges.* Eötvös Loránd University.
+    * **Contribution:** Introduces the **RANDOM-CRYPTO** dataset and utilizes **Group Relative Policy Optimization (GRPO)** to demonstrate that procedural reasoning for CTFs can be significantly improved through targeted reinforcement learning.
+* **Cui, Y., et al. (2025).** *FREE-MAD: Consensus-Free Multi-Agent Debate.* arXiv:2509.11035v1.
+    * **Contribution:** Proposes a framework to mitigate the inherent **conformity** of LLMs in multi-agent environments. By evaluating the entire debate trajectory rather than a simple final consensus, the system achieves higher reasoning accuracy.
+* **Anthropic PBC (2026).** *Partnering with Mozilla to Improve Firefox’s Security.*
+    * **Contribution:** An industry case study documenting **Claude Opus 4.6** identifying 22 vulnerabilities in the Firefox codebase, demonstrating the transition of LLMs toward real-world vulnerability discovery at scale.
+* **Mastrodonato, M. (2026).** *How Good Are Today's AIs at Cryptography and Mathematics?* Medium.
+    * **Contribution:** A practitioner’s perspective on the "zero-tolerance" nature of cryptography. It argues that the binary success/failure state of cryptographic tasks provides a more rigorous measure of an LLM's true reasoning depth than general coding tasks.
 
 ---
