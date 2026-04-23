@@ -1,6 +1,6 @@
 # config/members/justus.yaml
 member: justus
-model: Gotta double check which one I went with
+model: o3-mini
 
 prompts:
   original: src/prompts/CTF/system_prompt

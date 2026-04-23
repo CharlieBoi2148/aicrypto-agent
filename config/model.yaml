@@ -25,7 +25,7 @@ o3:
 
   
 o3-mini:
-  client: "azure"
+  client: "openai"
   model_name: "o3-mini"
   deployment: "o3-mini"
   reasoning_effort: medium
