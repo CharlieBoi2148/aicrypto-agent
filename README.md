@@ -196,19 +196,26 @@ To add a new member, copy `config/members/charlie.yaml`, rename it to `<name>.ya
 
 **Prior/Foundational Work:**
 
-[FROM MIGUEL]
+* **Yang, Y., Yamada, H., & Tokunaga, T. (2025).** *Evaluating Robustness of LLMs to Numerical Variations in Mathematical Reasoning.* The Sixth Workshop on Insights from Negative Results in NLP.
+    * **Contribution:** Proposes the GSM-ALT dataset to test how LLMs handle numerical perturbations in math word problems. The study concludes that LLMs are highly vulnerable to numerical variations, indicating that their mathematical reasoning is often a reliance on superficial pre-training patterns and that they fundamentally struggle with arithmetic operations.
+
+* **Maskey, U., Zhu, C., & Naseem, U. (2025).** *Benchmarking Large Language Models for Cryptanalysis and Side-Channel Vulnerabilities.* arXiv preprint arXiv:2505.24621v2.
+    * **Contribution:** Evaluates LLM cryptanalysis capabilities across various ciphers, revealing that models generally only comprehend obfuscation methods that appear frequently in their pre-training corpora. It establishes a critical baseline for LLM limitations, demonstrating that models struggle to generalize when faced with high token-inflation methods or arbitrary character substitution.
+
+* **Luong, T., et al. (2025).** *Towards Robust Mathematical Reasoning.* Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing.
+    * **Contribution:** Introduces IMO-Bench (AnswerBench, ProofBench, and GradingBench) to evaluate models on International Mathematical Olympiad-level problems. The paper demonstrates that while frontier models are becoming adept at short-answer tasks, rigorous proof generation remains a significant hurdle, pushing the evaluation landscape to focus on deep, verifiable reasoning rather than final-answer matching.
 
 **Contemporary Work:**
 
 *Recent advancements (late 2025–2026) showcasing the shift toward autonomous agents, reinforcement learning, and real-world vulnerability discovery.*
 
 * **Muzsai, L., Imolai, D., & Lukács, A. (2025).** *Improving LLM Agents with Reinforcement Learning on Cryptographic CTF Challenges.* Eötvös Loránd University.
-    * **Contribution:** Introduces the **RANDOM-CRYPTO** dataset and utilizes **Group Relative Policy Optimization (GRPO)** to demonstrate that procedural reasoning for CTFs can be significantly improved through targeted reinforcement learning.
-* **Cui, Y., et al. (2025).** *FREE-MAD: Consensus-Free Multi-Agent Debate.* arXiv:2509.11035v1.
-    * **Contribution:** Proposes a framework to mitigate the inherent **conformity** of LLMs in multi-agent environments. By evaluating the entire debate trajectory rather than a simple final consensus, the system achieves higher reasoning accuracy.
-* **Anthropic PBC (2026).** *Partnering with Mozilla to Improve Firefox’s Security.*
-    * **Contribution:** An industry case study documenting **Claude Opus 4.6** identifying 22 vulnerabilities in the Firefox codebase, demonstrating the transition of LLMs toward real-world vulnerability discovery at scale.
+    * **Contribution:** Introduces the **RANDOM-CRYPTO** dataset to fine-tune tool-augmented LLM agents using **Group Relative Policy Optimization (GRPO)**. The study proves that reinforcement learning significantly improves procedural reasoning and secure tool execution, with capabilities successfully generalizing to external benchmarks like picoCTF and AICrypto.
+* **Cui, Y., Fu, H., Zhang, H., Wang, L., & Zuo, C. (2025).** *FREE-MAD: Consensus-Free Multi-Agent Debate.* arXiv preprint arXiv:2509.11035v1.
+    * **Contribution:** Proposes a "consensus-free" Multi-Agent Debate (MAD) framework designed to mitigate the inherent conformity of LLMs during multi-agent interactions. Instead of relying on a final consensus or majority vote, FREE-MAD introduces a score-based mechanism that evaluates the entire debate trajectory. This approach achieves higher reasoning accuracy and fairness while significantly reducing token overhead by operating effectively as a single-round debate.
+* **Anthropic. (2026).** *Partnering with Mozilla to Improve Firefox's Security.*
+    * **Contribution:** An industry case study documenting how **Claude Opus 4.6** autonomously discovered 22 zero-day vulnerabilities (including 14 high-severity flaws) in the highly complex Firefox codebase over two weeks. It highlights the rapid transition of LLMs toward real-world vulnerability discovery at scale, while critically noting that the model's ability to actually *exploit* these vulnerabilities remains limited and currently requires disabled security sandboxes to succeed.
 * **Mastrodonato, M. (2026).** *How Good Are Today's AIs at Cryptography and Mathematics?* Medium.
-    * **Contribution:** A practitioner’s perspective on the "zero-tolerance" nature of cryptography. It argues that the binary success/failure state of cryptographic tasks provides a more rigorous measure of an LLM's true reasoning depth than general coding tasks.
+    * **Contribution:** A practitioner’s perspective on the "zero-tolerance" nature of cryptography. It argues that unlike general software engineering, the binary success/failure state of cryptographic tasks provides a more rigorous measure of an LLM's true reasoning depth.
 
 ---
