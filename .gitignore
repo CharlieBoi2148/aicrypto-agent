@@ -210,7 +210,5 @@ __marimo__/
 data/
 outputs/
 
-# Juan's personal notes
-NOTES.md
-PRESENTATION_SCRIPT.md
-JUANS_EXPERIMENT.md
+# Juan's personal docs folder (notes, scripts, experiment logs, poisoned prompt)
+juan_docs/

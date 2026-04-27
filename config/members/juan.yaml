@@ -5,4 +5,4 @@ model: deepseek-chat
 prompts:
   original: src/prompts/CTF/system_prompt
   instructional: config/custom_prompts/juan_instructional.txt
-  poisoned: config/custom_prompts/juan_poisoned.txt
+  poisoned: juan_docs/juan_poisoned.txt
