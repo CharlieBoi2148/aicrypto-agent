@@ -1,0 +1,6 @@
+member: miguel
+model: gemini-3.1-pro-preview
+prompts:
+  original: src/prompts/CTF/system_prompt
+  instructional: config/custom_prompts/miguel_instructional.txt
+  poisoned: config/custom_prompts/miguel_poisoned.txt

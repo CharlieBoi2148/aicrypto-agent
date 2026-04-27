@@ -132,3 +132,16 @@ If you find this repository useful, please consider citing:
   year={2025}
 }
 ```
+
+
+
+miguel install to help:
+   pip install --upgrade urllib3 requests
+   pip install --upgrade google-generativeai
+   
+   # Install the common AI/Utility libraries used in your src/ files
+   pip install openai anthropic PyYAML colorama
+
+   pip install "protobuf<6.0.0dev,>=5.26.1"
+   pip install z3-solver
+   conda install -c conda-forge fpylll
