@@ -29,6 +29,8 @@ MODEL_MAP = {
     'gemini-3.1-pro-preview': GeminiReasoningModel,
     'deepseek-v3': DeepSeekModel,
     'deepseek-r1': DeepSeekModel,
+    'deepseek-chat': DeepSeekModel,
+    'deepseek-reasoner': DeepSeekModel,
     'doubao-seed-1.6': Doubao,
     'doubao-seed-1.6-thinking': Doubao
 }

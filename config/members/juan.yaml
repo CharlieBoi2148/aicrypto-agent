@@ -1,0 +1,8 @@
+# config/members/juan.yaml
+member: juan
+model: deepseek-chat
+
+prompts:
+  original: src/prompts/CTF/system_prompt
+  instructional: config/custom_prompts/juan_instructional.txt
+  poisoned: juan_docs/juan_poisoned.txt

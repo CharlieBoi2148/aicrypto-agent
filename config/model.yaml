@@ -100,6 +100,18 @@ deepseek-r1:
   deployment: "deepseek-r1-0528"
   is_reasoning: true
 
+deepseek-chat:
+  client: "deepseek"
+  model_name: 'deepseek-chat'
+  deployment: "deepseek-chat"
+  is_reasoning: false
+
+deepseek-reasoner:
+  client: "deepseek"
+  model_name: 'deepseek-reasoner'
+  deployment: "deepseek-reasoner"
+  is_reasoning: true
+
 
 doubao-seed-1.6:
   client: "doubao"
