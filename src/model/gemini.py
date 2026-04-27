@@ -39,7 +39,7 @@ class GeminiReasoningModel(BaseModel):
     def add_assistant_message(self, message: str):
         self.messages.append(
             types.Content(
-                    role="assistant",
+                    role="model",
                     parts=[
                         types.Part.from_text(text=message)
                         ]
@@ -111,6 +111,8 @@ class GeminiReasoningModel(BaseModel):
             if not isinstance(m, dict):
                 continue
             role = m.get("role")
+            if role == "assistant": # Add this check
+                role = "model"
             content = m.get("content", "")
             rebuilt.append(
                 types.Content(
