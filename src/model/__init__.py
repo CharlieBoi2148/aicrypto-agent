@@ -21,6 +21,8 @@ MODEL_MAP = {
     "o3-mini":OpenAIReasoningModel,
     "o3-mini-high":OpenAIReasoningModel,
     "o3-mini-low":OpenAIReasoningModel,
+    "claude-opus-4-7": ClaudeModel,
+    "claude-opus-4-7-thinking": ClaudeModel,
     "claude-3.7-sonnet": ClaudeModel,
     "claude-3.7-sonnet-thinking": ClaudeModel,
     "claude-4.0-sonnet": ClaudeModel,

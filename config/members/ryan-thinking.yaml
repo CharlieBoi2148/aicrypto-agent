@@ -1,0 +1,7 @@
+# config/members/ryan-thinking.yaml
+member: ryan-thinking
+model: claude-opus-4-7-thinking
+
+prompts:
+  original: src/prompts/CTF/system_prompt
+  instructional: config/custom_prompts/ryan_instructional.txt

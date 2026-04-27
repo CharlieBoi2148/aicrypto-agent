@@ -114,7 +114,7 @@ class TaskRunner:
         self.task_info["time"] = 300 if self.task_info["time"] < 60 else self.task_info["time"] * 3
 
         if not (self.resume and Path(self.task_info["read_path"]).exists()):
-            shutil.copytree(self.task_path / "public", self.task_info["read_path"], dirs_exist_ok=True)
+            shutil.copytree(self.task_path / "public", self.task_info["read_path"], dirs_exist_ok=True, ignore=shutil.ignore_patterns("._*"))
 
         # Move helper scripts next to write_path for easier import.
         for helper in ("helper.py", "helper.sage"):
