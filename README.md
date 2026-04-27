@@ -99,7 +99,16 @@ Fork of the [AICrypto benchmark](https://github.com/wangyu-ovo/aicrypto-agent) f
    ```bash
    pip install pyyaml
    ```
+10. **Additional installments for smooth running of Gemini 3.1**
+   pip install --upgrade urllib3 requests
+   pip install --upgrade google-generativeai
+   
+   # Install the common AI/Utility libraries used in your src/ files
+   pip install openai anthropic PyYAML colorama
 
+   pip install "protobuf<6.0.0dev,>=5.26.1"
+   pip install z3-solver
+   conda install -c conda-forge fpylll
 ---
 
 ## Usage
