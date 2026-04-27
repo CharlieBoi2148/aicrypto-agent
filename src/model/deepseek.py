@@ -1,4 +1,5 @@
 import openai
+import httpx
 import os
 import dotenv
 from typing import Dict, Any
@@ -20,7 +21,8 @@ class DeepSeekModel(BaseModel):
                                         base_url="https://api.lkeap.cloud.tencent.com/v1")
         elif self.client_type == 'deepseek':
             self.client = openai.OpenAI(api_key=os.getenv("DEEPSEEK_API_KEY"),
-                                        base_url="https://api.deepseek.com")
+                                        base_url="https://api.deepseek.com",
+                                        http_client=httpx.Client(verify=False))
         else:
             raise ValueError(f"Invalid client type: {self.client_type}")    
     
