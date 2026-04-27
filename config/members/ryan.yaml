@@ -1,0 +1,7 @@
+# config/members/ryan.yaml
+member: ryan
+model: claude-opus-4-7
+
+prompts:
+  original: src/prompts/CTF/system_prompt
+  instructional: config/custom_prompts/ryan_instructional.txt
