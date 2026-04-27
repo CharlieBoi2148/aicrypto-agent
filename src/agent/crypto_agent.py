@@ -117,8 +117,30 @@ class CryptoAgent:
         # ------------------------------------------------------------------
         mandatory_tags = ["### Reasoning", "### Action", "### Action Content"]
         if not all(tag in response_content for tag in mandatory_tags):
-            result["action_type"] = "format error"
-            return result
+            # Fallback: if ### Action Content is missing but the command appears
+            # on the line after the action type under ### Action, recover it.
+            if "### Reasoning" in response_content and "### Action" in response_content:
+                action_block = re.search(
+                    r"### Action\s*:?[\s\n]*(.*?)(?=###|\Z)",
+                    response_content, re.IGNORECASE | re.DOTALL
+                )
+                if action_block:
+                    lines = [l.strip() for l in action_block.group(1).splitlines() if l.strip()]
+                    if len(lines) >= 2 and lines[0] in {"command", "create file"}:
+                        response_content = (
+                            response_content.rstrip()
+                            + "\n\n### Action Content\n"
+                            + "\n".join(lines[1:])
+                        )
+                    else:
+                        result["action_type"] = "format error"
+                        return result
+                else:
+                    result["action_type"] = "format error"
+                    return result
+            else:
+                result["action_type"] = "format error"
+                return result
         
         # Extract reasoning (allow with or without trailing colon)
         reasoning_text = ""
