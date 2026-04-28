@@ -3,12 +3,13 @@
 Per-member entry point for the AICrypto CTF benchmark.
 
 Each team member has a config in config/members/<name>.yaml defining
-their model and prompt files. The CTF challenge and prompt mode are
-specified on the command line.
+their model and providing altered prompt pathways. The CTF challenge 
+and selected prompt are specified on the command line.
 
 Usage Examples:
-    python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode instructional
-    python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode poisoned
+    python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode prompt-charlie
+    python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode prompt-justus
+    python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode prompt-miguel-p
     python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode original
 
 Results saved to: outputs/CTF-<member>/<category>/<challenge>/<model>/run/
@@ -59,7 +60,7 @@ def parse_args():
     )
     parser.add_argument(
         "--prompt-mode", required = True,
-        choices=["original", "instructional", "poisoned"],
+        choices=["original", "prompt-charlie", "prompt-juan", "prompt-justus", "prompt-miguel-i", "prompt-miguel-p", "prompt-ryan"],
         help="Which prompt variant to use"
     )
     # Note: model is specified per-member in config/members/<member>.yaml,
