@@ -107,7 +107,7 @@ Fork of the [AICrypto benchmark](https://github.com/wangyu-ovo/aicrypto-agent) f
 ### Run Single CTF Challenge
 
 ```shell
-python run_single_ctf_task.py --task-path data/CTF/04-RSA/01-blue-hens-2023 --model gpt-4.1
+python run_single_ctf_task.py --task-path data/CTF/04-RSA/01-blue-hens-2023 --model gpt-4.1 --id 0
 ```
 
 Results are saved to `./outputs/CTF-0/04-RSA/01-blue-hens-2023/gpt-4.1/run`.
@@ -115,7 +115,7 @@ Results are saved to `./outputs/CTF-0/04-RSA/01-blue-hens-2023/gpt-4.1/run`.
 ### Run CTF Challenges in Parallel for Evaluation
 
 ```shell
-python run_ctf_parallel.py --jobs 4 --id 0
+python batch_run_ctf.py --jobs 4 --id 0
 ```
 
 Uses 4 processes to run tasks with run ID 0. Results saved to `./outputs/CTF-0`. Models are specified in `config/model.yaml`.
@@ -126,7 +126,7 @@ Uses 4 processes to run tasks with run ID 0. Results saved to `./outputs/CTF-0`.
 python run_choice_question.py --model gpt-4.1
 ```
 
-Results are saved to `./outputs/MultipleChoice/<model_name>/`.
+Results are saved to `./outputs/MultipleChoice_EDIT/<model_name>/`.
 
 ### Run MCQ Evaluation in Parallel
 
@@ -159,7 +159,7 @@ python batch_run_proof_tasks.py --exam-values 1 2 3 --jobs 4
 
 We added `run_member.py`, a new run command that lets each team member swap the CTF agent's system prompt with a custom technique. Each member has a config in `config/members/<name>.yaml` that declares their model and includes available prompt paths. One exception is listed below:
 - ryan-thinking.yaml
-This member file is made to handle an additional model handled by member Ryan. The -thinking appeneded at the end of the file name is for organizational and testing purposes, referencing the related model name stored within.
+This member file is made to handle an additional model handled by member Ryan. The -thinking appended at the end of the file name is for organizational and testing purposes, referencing the related model name stored within.
 
 Below are example instructions for running prompts through member "charlie".
 
