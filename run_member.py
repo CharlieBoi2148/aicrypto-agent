@@ -60,7 +60,7 @@ def parse_args():
     )
     parser.add_argument(
         "--prompt-mode", required = True,
-        choices=["original", "instructional", "poisoned"],
+        choices=["original", "prompt-charlie", "prompt-juan", "prompt-justus", "prompt-miguel-i", "prompt-miguel-p", "prompt-ryan"],
         help="Which prompt variant to use"
     )
     # Note: model is specified per-member in config/members/<member>.yaml,
