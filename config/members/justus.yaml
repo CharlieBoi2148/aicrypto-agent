@@ -4,9 +4,9 @@ model: o3-mini
 
 prompts:
   original: src/prompts/CTF/system_prompt
-  promtpt-charlie: config/custom_prompts/charlie_instructional.txt
+  prompt-charlie: config/custom_prompts/charlie_instructional.txt
   prompt-juan: config/custom_prompts/juan_instructional.txt
   prompt-justus: config/custom_prompts/justus_poisoned.txt
   prompt-miguel-i: config/custom_prompts/miguel_instructional.txt
   prompt-miguel-p: config/custom_prompts/miguel_poisoned.txt
-  promp-ryan: config/custom_prompts/ryan_instructional.txt
+  prompt-ryan: config/custom_prompts/ryan_instructional.txt
