@@ -30,7 +30,7 @@ Fork of the [AICrypto benchmark](https://github.com/wangyu-ovo/aicrypto-agent) f
    cd ~/Documents
    git clone https://github.com/CharlieBoi2148/aicrypto-agent.git
    cd aicrypto-agent
-   git checkout development
+   git checkout main
    ```
 
 2. **Install Miniconda:**
