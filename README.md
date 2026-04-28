@@ -19,7 +19,7 @@ Fork of the [AICrypto benchmark](https://github.com/wangyu-ovo/aicrypto-agent) f
 - Python 3.10.15
 - SageMath 10.5
 - yafu 1.34.5
-- VirtualBox VM configured as per the class setup (≥ 5000 MB base memory recommended for some operations)
+- VirtualBox VM (Not strictly necessary if the environment can be replicated; an excess of 5000 MB base memory is recommended for some operations)
 
 ### Installation
 
@@ -164,19 +164,29 @@ python batch_run_proof_tasks.py --exam-values 1 2 3 --jobs 4
 
 ---
 
-## Our Extension — Prompt Injection
+## Our Extension — Prompt Engineering
 
-We added `run_member.py`, a new entry point that lets each team member swap the CTF agent's system prompt with a custom technique. Each member has a config in `config/members/<name>.yaml` that declares their model and prompt files.
+We added `run_member.py`, a new run command that lets each team member swap the CTF agent's system prompt with a custom technique. Each member has a config in `config/members/<name>.yaml` that declares their model and includes available prompt paths. One exception is listed below:
+- ryan-thinking.yaml
+This member file is made to handle an additional model handled by member Ryan. The -thinking appeneded at the end of the file name is for organizational and testing purposes, referencing the related model name stored within.
+
+Below are example instructions for running prompts through member "charlie".
 
 ```bash
 python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode original
-python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode instructional
-python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode poisoned
+python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode prompt-charlie
+python run_member.py --member charlie --task data/CTF/04-RSA/01-blue-hens-2023 --prompt-mode prompt-justus
 ```
 
-`--prompt-mode` accepts: `original | instructional | poisoned`. Model is pulled from `config/members/<member>.yaml`, not from the CLI, so each member's results use their declared model consistently.
+It is important to note that all prompts can be run on any member. However, the model is member-dependent for testing and running purposes. Additionally, while most altered prompts follow a `prompt-<member name>` format, three exceptions exist as listed below:
+- original
+- prompt-miguel-i
+- prompt-miguel-p
+Running the "original" prompt through any member will cause the program to reference the original, unaltered system prompt. Both prompt-miguel-i and prompt-miguel-p run altered prompts, wherein prompt-miguel-i is "instructional," attempting to increase success rate and reduce iterations, and prompt-miguel-p is "poisoned," attempting to decrease success rate and increase iterations.
 
-To add a new member, copy `config/members/charlie.yaml`, rename it to `<name>.yaml`, and update the fields.
+`--prompt-mode` accepts: `original | prompt-charlie | prompt-juan | prompt-justus | prompt-miguel-i | prompt-miguel-p | prompt-ryan`. Model is pulled from `config/members/<member>.yaml`, not from the CLI, so each member's results use their declared model consistently.
+
+To add a new member, copy an existing member file, rename it to `<name>.yaml`, and update associated name and model values.
 
 ---
 
@@ -193,7 +203,10 @@ To add a new member, copy `config/members/charlie.yaml`, rename it to `<name>.ya
 - MCQ benchmark (all 135 questions)
 - CTF challenges in the RSA category
 - Proof generation (exam 1, all 6 problems)
-- Per-member prompt injection via `run_member.py`
+- Per-member prompt running via `run_member.py`
+- Gemini 3.1 compatibility
+- Claude Opus 4.7 compatibility
+- Claude Opus 4.7 Thinking compatibility
 
 **Does not work:**
 - Proof grading — requires `gpt-5.1` and `gemini-3-pro-preview` as graders; these are not included in the repository. Only proof generation can be reproduced.
