@@ -181,6 +181,10 @@ To add a new member, copy an existing member file, rename it to `<name>.yaml`, a
 
 ---
 
+## Purpose of our Extension
+
+This extension was created to test the influence of prompts on LLM performance in multi-step scenarios. The performance of each LLM when given a specific altered prompt reveals a bit about its abilities; for example, prompt-justus includes 'prompt injection' inspired instructions intended to slow and impair CTF problem solving. The results, relative to base performance, can help reveal how well the tested model successfully interprets and organizes the information it receives. Other prompts provide insight into the way LLMs process information, such as prompt-ryan recontextualizing the question as a confidentiality breach that the LLM is prompted to better understand prior to solving.
+
 ## Configuration
 
 - **Models**: Configure available models in `config/model.yaml`
