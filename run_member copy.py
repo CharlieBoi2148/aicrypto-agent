@@ -105,7 +105,7 @@ def build_args(config: dict, task: str, prompt_mode: str, prompt_path: str) -> S
     # Format: outputs/CTF-<member>/<category>/<challenge>/<model>/<time>/run/
     dynamic_path = os.path.join(
         "outputs", 
-        f"CTF-{config['member']}", 
+        f"CTF-{config['member']}-{prompt_mode}", 
         category, 
         challenge, 
         config["model"].replace("/", "_"), # Replace slashes in model names for valid paths
