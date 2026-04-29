@@ -152,10 +152,13 @@ def main():
     print(f"  Model       : {config['model']}")
     print(f"  Prompt mode : {args.prompt_mode}")
     print(f"  Prompt file : {prompt_path}")
-    output_path = Path(f"outputs/CTF-{config['member']}")
-    output_path.mkdir(parents=True, exist_ok=True)
+    
     runner_args = build_args(config, args.task, args.prompt_mode, prompt_path)
     print(f"  Output dir  : {runner_args.output_dir}\n")
+
+    # 2. Now create the directory using the path generated in build_args
+    log_dir = Path(runner_args.output_dir)
+    log_dir.mkdir(parents=True, exist_ok=True)
 
 
     try:
