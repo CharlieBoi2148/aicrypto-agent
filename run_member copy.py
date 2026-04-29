@@ -153,12 +153,12 @@ def main():
     print(f"  Prompt mode : {args.prompt_mode}")
     print(f"  Prompt file : {prompt_path}")
     
+    # Initialize the arguments first
     runner_args = build_args(config, args.task, args.prompt_mode, prompt_path)
     print(f"  Output dir  : {runner_args.output_dir}\n")
 
-    # 2. Now create the directory using the path generated in build_args
-    log_dir = Path(runner_args.output_dir)
-    log_dir.mkdir(parents=True, exist_ok=True)
+    # Create the full directory structure before starting the task
+    Path(runner_args.output_dir).mkdir(parents=True, exist_ok=True)
 
 
     try:
