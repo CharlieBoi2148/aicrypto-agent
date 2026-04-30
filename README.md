@@ -189,6 +189,8 @@ python run_all_prompts.py charlie data/CTF/03-Stream-PRNG-Hash/01-babycharge
 
 To add a new member, copy an existing member file, rename it to `<name>.yaml`, and update associated name and model values.
 
+Additional information on our experimental results, including sample test data, can be found in the 'research' folder. Each member has a document describing a bit about their prompt, model, and contributions. These are not necessary for running the code, but they can serve as a baseline for result comparisons and analysis.
+
 ---
 
 ## Purpose of our Extension

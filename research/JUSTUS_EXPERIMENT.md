@@ -33,7 +33,7 @@ The model related to the justus member file that I used for testing was o3-mini.
 
 - `config/members/justus.yaml` - my member file
 - `config/custom_prompts/justus_poisoned.txt` — my prompt file
-- Note: I have made many adjustments to member files, the readme file, and run_member.py in the process of providing full prompt integration. The purpose of these changes were to ensure context, accuracy, and provided information were consistent and sufficient. Further details are outlined in my git commits.
+- Note: I have made many adjustments to member files, the readme file, and run_member.py in the process of providing full prompt integration and ensuring high quality work. The purpose of these changes were to ensure context, accuracy, and provided information were consistent and sufficient. Further details are outlined in my git commits.
 
 ## How to use my prompt/member file
 
@@ -54,6 +54,26 @@ python run_all_prompts.py justus data/CTF/04-RSA/01-blue-hens-2023
 Note that these work for any existing CTF questions.
 
 The model associated with member justus is o3-mini.
+
+### o3-mini Time Results
+
+| Task | original | prompt-charlie | prompt-juan | prompt-justus | prompt-miguel-i | prompt-miguel-p | prompt-ryan |
+|---|---|---|---|---|---|---|---|
+| 01-greek-cipher | Failure | Failure | Failure | Failure | Failure | Failure | Failure |
+| 01-integral-communication | Failure | Failure | Failure | Failure | Failure | Failure | Failure |
+| 01-babycharge | Failure | Failure | Failure | 00:01:00.843795 | Failure | Failure | Failure |
+| 01-blue-hens-2023 | 00:00:26.6 | 00:00:22.2 | 00:00:27 | 00:00:27.4 | 00:00:19.5 | 00:00:26 | 00:00:36.409 |
+| 01-prove-it | Failure | Failure | Failure | Failure | Failure | Failure | Failure |
+
+### o3-mini Iteration Results
+
+| Task | original | prompt-charlie | prompt-juan | prompt-justus | prompt-miguel-i | prompt-miguel-p | prompt-ryan |
+|---|---|---|---|---|---|---|---|
+| 01-greek-cipher | Failure | Failure | Failure | Failure | Failure | Failure | Failure |
+| 01-integral-communication | Failure | Failure | Failure | Failure | Failure | Failure | Failure |
+| 01-babycharge | Failure | Failure | Failure | 5 | Failure | Failure | Failure |
+| 01-blue-hens-2023 | 6 | 5 | 6 | 5 | 5 | 5 | 5 |
+| 01-prove-it | Failure | Failure | Failure | Failure | Failure | Failure | Failure |
 
 ## Results Analysis of prompt-justus
 
