@@ -11,6 +11,7 @@ def run_benchmarks(member, task, model):
         "original", "prompt-charlie", "prompt-juan", 
         "prompt-justus", "prompt-miguel-i", "prompt-miguel-p", "prompt-ryan"
     ]
+    
     TIMEOUT_SECONDS = 1200 
 
     for mode in prompt_modes:
@@ -22,7 +23,7 @@ def run_benchmarks(member, task, model):
         print(f"{'='*70}")
 
         cmd = [
-            "python", "run_member copy.py", 
+            "python", "run_member.py", 
             "--member", member, 
             "--task", task, 
             "--prompt-mode", mode

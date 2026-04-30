@@ -27,6 +27,7 @@ from types import SimpleNamespace
 import yaml
 
 from src.agent.task_runner import TaskRunner
+from datetime import datetime
 
 # ---------------------------------------------------------------------------
 # Limit thread-hungry math libraries (OpenBLAS, MKL, OpenMP, etc.) to a single
@@ -90,13 +91,34 @@ def resolve_prompt_path(config: dict, prompt_mode: str) -> str:
 
 #Returns a namespace for TaskRunner
 def build_args(config: dict, task: str, prompt_mode: str, prompt_path: str) -> SimpleNamespace:
+    # 1. Generate the timestamp
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    
+    # 2. Extract category and challenge from the task path
+    # Removes 'data/' and splits the remaining path
+    parts = Path(task).parts
+    # Assuming path is: data / CTF / <category> / <challenge>
+    category = parts[2] if len(parts) > 2 else "unknown_cat"
+    challenge = parts[3] if len(parts) > 3 else "unknown_task"
+    
+    # 3. Construct the new nested path
+    # Format: outputs/CTF-<member>/<category>/<challenge>/<model>/<time>/run/
+    dynamic_path = os.path.join(
+        "outputs", 
+        f"CTF-{config['member']}-{prompt_mode}", 
+        category, 
+        challenge, 
+        config["model"].replace("/", "_"), # Replace slashes in model names for valid paths
+        timestamp,
+        "run"
+    )
+
     return SimpleNamespace(
         task_path=task,
         model=config["model"],
         max_iterations=100,
-        output_dir="auto",
+        output_dir=dynamic_path, # Pass the new nested path here
         system_prompt=prompt_path,
-        # Produces outputs/CTF-<member>/...
         id=config["member"],
     )
 
@@ -130,9 +152,14 @@ def main():
     print(f"  Model       : {config['model']}")
     print(f"  Prompt mode : {args.prompt_mode}")
     print(f"  Prompt file : {prompt_path}")
-    print(f"  Output dir  : outputs/CTF-{config['member']}/\n")
-
+    
+    # Initialize the arguments first
     runner_args = build_args(config, args.task, args.prompt_mode, prompt_path)
+    print(f"  Output dir  : {runner_args.output_dir}\n")
+
+    # Create the full directory structure before starting the task
+    Path(runner_args.output_dir).mkdir(parents=True, exist_ok=True)
+
 
     try:
         #Register signal handlers **before** heavy processing starts so that
