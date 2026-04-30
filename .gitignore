@@ -212,3 +212,8 @@ outputs/
 
 # Juan's personal docs folder (notes, scripts, experiment logs, poisoned prompt)
 juan_docs/
+
+# Juan's batch run script and its output (local-only, avoid merge conflicts)
+run_juan_all_prompts.sh
+outputs/deepseek_results.txt
+outputs/deepseek_done.txt
