@@ -2,15 +2,32 @@
 
 I was inspired by the prompt injection techniques we briefly discussed at the beginning of our class and I wondered if it was possible to utilize those techniques in more subtle ways. My prompt follows the practice of "inserting malicious instructions among seemingly normal text," but these malicious instructions are intentionally easy to ignore and don't rarely contradict statements from the original prompt. The reason for this is because running this prompt helps evaluate how well the LLM models used are able to identify, evaluate, and handle these instructions. If time or iterations increase, the assumption would be that it's a result of failing to identify or getting distracted by these malicious prompts, resulting in expended time or manipulated outputs. If, on the other hand, time or iterations are lower than the original prompt, it may suggest that the model in question responded to the clearly malicious prompts by better evaluating other, legitimate instructions.
 
-## Tasks tested
+## What was tested
 
+Challenges:
 `data/CTF/01-Classic/01-greek-cipher`
 `data/CTF/02-Block/01-integral-communication`
 `data/CTF/03-Stream-PRNG-Hash/01-babycharge`
 `data/CTF/04-RSA/01-blue-hens-2023`
 `data/CTF/05-DLP/01-prove-it`
 
-We tested the "first question" from 5 categories of the provided CTF challenges.
+These are the first questions from the first five categories of CTF problems, covering classic, block, stream prng hash, rsa, and dlp problems.
+
+Prompts:
+`original`
+`prompt-charlie`
+`prompt-juan`
+`prompt-justus`
+`prompt-miguel-i`
+`prompt-miguel-p`
+`prompt-ryan`
+
+We tested the original prompt, an altered prompt from each member, and an additional altered prompt from Miguel. Most prompts are intended to help increase accuracy with the exception of prompt-justus and prompt-miguel-p which are intended to decrease accuracy.
+
+Model:
+`o3-mini`
+
+The model related to the justus member file that I used for testing was o3-mini. This was one of the models included in the original paper and has not been added separately. In the sample challenges, its success rate was subpar, as suggested by its 30% accuracy in most categories.
 
 ## Files I added
 
@@ -20,7 +37,7 @@ We tested the "first question" from 5 categories of the provided CTF challenges.
 
 ## How to use my prompt/member file
 
-I highly recommend referring to README.md for prompt running instructions! A snipped of README.md has been added to run_member.py for convenince, as well.
+I highly recommend referring to README.md for prompt running instructions! A snippet of README.md has been added to run_member.py for convenince as well.
 
 Here is an example of using member justus and prompt-justus in a single run:
 
