@@ -177,6 +177,16 @@ Running the "original" prompt through any member will cause the program to refer
 
 `--prompt-mode` accepts: `original | prompt-charlie | prompt-juan | prompt-justus | prompt-miguel-i | prompt-miguel-p | prompt-ryan`. Model is pulled from `config/members/<member>.yaml`, not from the CLI, so each member's results use their declared model consistently.
 
+For testing purposes, another function named `run_all_prompts.py` was created to streamline prompt running. Instead of requiring manual input of each prompt for the same test, this function can be called as a run command and will automatically run the original prompt and our added custom prompts sequentially. It includes a failsafe, automatically terminating the program after 20 minutes to prevent excessive token usage in cases of expected failure (as, for our project, this is a serious concern and limitation).
+
+Below are example instructions for running all prompts through member "charlie".
+
+```bash
+python run_all_prompts.py charlie data/CTF/04-RSA/01-blue-hens-2023
+python run_all_prompts.py charlie data/CTF/01-Classic/01-greek-cipher
+python run_all_prompts.py charlie data/CTF/03-Stream-PRNG-Hash/01-babycharge
+```
+
 To add a new member, copy an existing member file, rename it to `<name>.yaml`, and update associated name and model values.
 
 ---
@@ -205,7 +215,8 @@ This extension was created to test the influence of prompts on LLM performance i
 
 **Does not work:**
 - Proof grading — requires `gpt-5.1` and `gemini-3-pro-preview` as graders; these are not included in the repository. Only proof generation can be reproduced.
-- Full LLM Compatibility with custom prompts — For testing purposes, custom prompts are run through individual member files where each member is associated with a particular model. As a result, only 5 LLMs (1 per associated member) can be tested with custom prompts. However, model values inside each member file can be updated to work with any models in config > model.yaml or a new member can be created to handle a new model inside config > model.yaml with ease.
+- Full LLM Compatibility with custom prompts — For testing purposes, custom prompts are run through individual member files where each member is associated with a particular model. As a result, only 6 LLMs (1 per associated member, with the exception of Ryan who has 2) can be tested with custom prompts. However, model values inside each member file can be updated to work with any models in config > model.yaml or a new member can be created to handle a new model inside config > model.yaml with ease.
+- CTF Parallelization for custom prompts — Our custom prompts are incompatible with batch_run_ctf.py as implementation is handled by custom runners run_member.py and run_all_prompts.py. Parallelization is efficient but incredibly draining on our limited tokens and may significantly impact runtime calculations, so single-prompt runs have been prioritized.
 
 ---
 
